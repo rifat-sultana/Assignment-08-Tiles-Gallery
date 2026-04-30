@@ -30,7 +30,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="container mx-auto  shadow">
+    <div className="container mx-auto shadow">
       <nav className="flex justify-between items-center px-6 py-2 font-semibold shadow-2xs ">
 
         {/* Logo */}
