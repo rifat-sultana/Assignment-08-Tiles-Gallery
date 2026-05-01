@@ -4,7 +4,7 @@ import Image from "next/image";
 const TileCard = ({ tile }) => {
   // console.log(tile)
    return (
-     <div className="bg-slate-100 rounded-2xl text-center text-amber-800 overflow-hidden shadow-2xl hover:shadow-2xl transition duration-300  mt-10 ">
+     <div className="bg-gray-200 rounded-2xl text-center text-amber-800 overflow-hidden shadow-2xl hover:shadow-2xl transition duration-300  mt-10 ">
       
       {/* Title (Top) */}
       <div className="p-4 pt-2">
@@ -14,7 +14,7 @@ const TileCard = ({ tile }) => {
       </div>
 
       {/* Image (Middle) */}
-      <div className="relative w-full h-48 mt-2 b">
+      <div className="relative w-full aspect-square">
         <Image
           src={tile.image}
           alt={tile.title}

@@ -1,11 +1,13 @@
-import React from 'react';
+// import React from 'react';
 import TileCard from './TileCard';
+import data from "../../../public/data.json";
 
 const FeaturedTilesPage = async () => {
   const res = await fetch('https://assignment-08-tiles-gallery.vercel.app/data.json')
   const tiles = await res.json();
   // console.log(tiles)
 
+  const allTiles = data;  
   const topTiles = tiles.slice(0,8)
   console.log(topTiles)
 
