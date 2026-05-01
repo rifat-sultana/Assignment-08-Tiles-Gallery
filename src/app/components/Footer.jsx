@@ -46,7 +46,7 @@ export default function Footer() {
       </div>
 
       <div className="text-center text-xs md:text-sm text-gray-400 
-                   border-t border-gray-700 py-3 md:py-4 px-4">
+                   border-t border-gray-400 py-3 md:py-4 px-4">
         © 2026 Tiles Gallery. All rights reserved.
       </div>
     </footer>

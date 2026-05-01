@@ -1,8 +1,12 @@
 @import "tailwindcss";
-/* @import "@heroui/styles";  */
 @plugin "daisyui";
 
 
+
+  
+/* @import "@heroui/styles";  */
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+
+
