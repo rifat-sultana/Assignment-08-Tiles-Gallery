@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "../assets/logo-design.png";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
-  const pathname = usePathname(); 
+  const router = useRouter();
 
- 
+  const pathname = usePathname();
+
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
@@ -20,10 +21,11 @@ export default function Navbar() {
     }
   }, [pathname]);
 
-  // 🚪 LOGOUT
+  // LOGOUT
   const handleLogout = () => {
     localStorage.removeItem("user");
     setUser(null);
+    router.push('/login');
   };
 
   return (
@@ -45,28 +47,27 @@ export default function Navbar() {
           <Link href="/">Home</Link>
           <Link href="/all-tiles">All Tiles</Link>
 
-         
+
           {user && <Link href="/profile">My Profile</Link>}
         </div>
 
-      
+
         <div className="flex gap-4">
           {!user ? (
             <Link href="/login">
-              <button className="bg-gray-100 text-black px-4 py-1 font-bold rounded">
+              <button className="bg-gray-100 cursor-pointer hover:bg-gray-300 text-black px-4 py-1 font-bold rounded">
                 Login
               </button>
             </Link>
           ) : (
             <>
-             
-
-              <button
-                onClick={handleLogout}
-                className="bg-gray-200 text-black px-4 py-1 font-bold rounded"
-              >
-                Logout
-              </button>
+              <Link href="/logout">
+                <button
+                  onClick={handleLogout}
+                  className="bg-gray-200 cursor-pointer hover:bg-gray-300 text-black px-4 py-1 font-bold rounded">
+                  Logout
+                </button>
+              </Link>
             </>
           )}
         </div>
