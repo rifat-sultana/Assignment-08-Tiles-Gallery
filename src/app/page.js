@@ -1,6 +1,7 @@
 
-import Banner from '@/app/components/Banner'
-import FeaturedTilesPage from './components/FeaturedTiles';
+import Banner from "./components/Banner";
+import FeaturedTilesPage from "./components/FeaturedTiles";
+
 
 export default function Home() {
   return (

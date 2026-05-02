@@ -1,6 +1,6 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import Navbar from '@/app/components/navbar';
+import Navbar from './components/navbar';
 import Footer from "./components/Footer";
 ;
 
