@@ -5,7 +5,7 @@ import TileCard from "../components/TileCard";
 const AllTilesPage = async() => {
   const res = await fetch('https://assignment-08-tiles-gallery.vercel.app/data.json')
    const tiles = await res.json();
-   console.log(tiles)
+  //  console.log(tiles)
 
    const allTiles = data;
 

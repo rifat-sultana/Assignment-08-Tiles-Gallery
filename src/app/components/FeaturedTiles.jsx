@@ -9,7 +9,7 @@ const FeaturedTilesPage = async () => {
 
   const allTiles = data;  
   const topTiles = tiles.slice(0,8)
-  console.log(topTiles)
+  // console.log(topTiles)
 
 
   return (

@@ -1,4 +1,4 @@
-
+import Link from "next/link";
 import Image from "next/image";
 
 const TileCard = ({ tile }) => {
@@ -24,10 +24,13 @@ const TileCard = ({ tile }) => {
       </div>
 
       {/* Button (Bottom) */}
+
       <div className="p-4">
-        <button className="w-full bg-gray-600 text-white py-1 rounded-lg border hover:bg-gray-800 transition">
+        <Link href={`/all-tiles/${tile.id}`}>  
+        <button className="w-full bg-gray-600 text-white py-1 rounded-lg hover:bg-gray-800 transition">
           View Details
         </button>
+        </Link> 
       </div>
 
     </div>

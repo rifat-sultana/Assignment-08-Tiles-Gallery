@@ -9,6 +9,8 @@
     "currency": "USD",
     "dimensions": "60x60 cm",
     "material": "Ceramic",
+    "creator": "Unique Tiles Co.",
+    "tags": ["blue", "glossy", "modern"],
     "inStock": true
   },
   {
@@ -21,6 +23,8 @@
     "currency": "USD",
     "dimensions": "80x80 cm",
     "material": "Marble",
+    "creator": "Elite Marble Ltd.",
+    "tags": ["white", "luxury", "glossy"],
     "inStock": true
   },
   {
@@ -33,6 +37,8 @@
     "currency": "USD",
     "dimensions": "60x120 cm",
     "material": "Porcelain",
+    "creator": "Urban Tiles",
+    "tags": ["wood", "natural", "modern"],
     "inStock": true
   },
   {
@@ -45,6 +51,8 @@
     "currency": "USD",
     "dimensions": "50x50 cm",
     "material": "Ceramic",
+    "creator": "Design Studio Tiles",
+    "tags": ["pattern", "decorative", "art"],
     "inStock": true
   },
   {
@@ -53,10 +61,12 @@
     "description": "Smooth grey marble tile with matte finish",
     "image": "/images/tiles/tile_005.jpg",
     "category": "marble",
-    "price": 70.00,
+    "price": 70.0,
     "currency": "USD",
     "dimensions": "90x90 cm",
     "material": "Marble",
+    "creator": "GreyStone Ltd.",
+    "tags": ["grey", "matte", "minimal"],
     "inStock": false
   },
   {
@@ -65,10 +75,12 @@
     "description": "Stylish black porcelain tile for luxury spaces",
     "image": "/images/tiles/tile_006.jpg",
     "category": "porcelain",
-    "price": 60.50,
+    "price": 60.5,
     "currency": "USD",
     "dimensions": "60x60 cm",
     "material": "Porcelain",
+    "creator": "LuxTile",
+    "tags": ["black", "luxury", "modern"],
     "inStock": true
   },
   {
@@ -81,6 +93,8 @@
     "currency": "USD",
     "dimensions": "45x45 cm",
     "material": "Ceramic",
+    "creator": "SmoothTiles",
+    "tags": ["matte", "smooth", "simple"],
     "inStock": true
   },
   {
@@ -89,10 +103,12 @@
     "description": "Classic beige marble tile for timeless design",
     "image": "/images/tiles/tile_008.jpg",
     "category": "marble",
-    "price": 68.20,
+    "price": 68.2,
     "currency": "USD",
     "dimensions": "70x70 cm",
     "material": "Marble",
+    "creator": "Classic Marble",
+    "tags": ["beige", "classic", "elegant"],
     "inStock": true
   },
   {
@@ -101,10 +117,12 @@
     "description": "High-gloss porcelain tile with reflective finish",
     "image": "/images/tiles/tile_009.jpg",
     "category": "porcelain",
-    "price": 58.90,
+    "price": 58.9,
     "currency": "USD",
     "dimensions": "60x60 cm",
     "material": "Porcelain",
+    "creator": "ShineTiles",
+    "tags": ["glossy", "shiny", "modern"],
     "inStock": false
   },
   {
@@ -113,10 +131,12 @@
     "description": "Rustic ceramic tile for vintage interiors",
     "image": "/images/tiles/tile_010.jpg",
     "category": "ceramic",
-    "price": 37.50,
+    "price": 37.5,
     "currency": "USD",
     "dimensions": "50x50 cm",
     "material": "Ceramic",
+    "creator": "Vintage Tiles",
+    "tags": ["rustic", "vintage", "classic"],
     "inStock": true
   },
   {
@@ -125,10 +145,12 @@
     "description": "Luxury black marble tile with polished finish",
     "image": "/images/tiles/tile_011.jpg",
     "category": "marble",
-    "price": 75.00,
+    "price": 75.0,
     "currency": "USD",
     "dimensions": "100x100 cm",
     "material": "Marble",
+    "creator": "Premium Marble Co.",
+    "tags": ["black", "polished", "luxury"],
     "inStock": true
   },
   {
@@ -137,10 +159,12 @@
     "description": "Stone-look porcelain tile for natural aesthetics",
     "image": "/images/tiles/tile_012.jpg",
     "category": "porcelain",
-    "price": 62.30,
+    "price": 62.3,
     "currency": "USD",
     "dimensions": "80x80 cm",
     "material": "Porcelain",
+    "creator": "NatureTiles",
+    "tags": ["stone", "natural", "modern"],
     "inStock": true
   }
 ]
