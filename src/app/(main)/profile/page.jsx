@@ -1,7 +1,8 @@
 "use client";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "../../../lib/auth-client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function MyProfile() {
   const { data: session, isPending } = authClient.useSession();
@@ -20,9 +21,11 @@ export default function MyProfile() {
       <div className="card w-96 bg-base-100 shadow-xl p-8">
         <h2 className="text-2xl font-bold text-center mb-6">My Profile</h2>
         <div className="flex flex-col items-center gap-4">
-          <image
+          <Image
             src={session.user.image || "https://via.placeholder.com/150"} 
             alt="Profile" 
+            width={128}
+            height={128}
             className="w-32 h-32 rounded-full border-4 border-blue-500 object-cover"
           />
           <div className="text-center">
@@ -31,7 +34,7 @@ export default function MyProfile() {
           </div>
           
          
-          <Link href="/my-profile/update">
+          <Link href="/profile/update">
             <button className="btn btn-primary mt-4 w-full">Update Information</button>
           </Link>
         </div>

@@ -21,11 +21,12 @@ const TileDetailsPage = async ({params}) => {
       <div className="grid md:grid-cols-2 gap-8 items-center">
 
         {/*image */}
-        <div className="relative w-full h-[400px] rounded-xl overflow-hidden shadow-lg">
+        <div className="relative w-full h-100 rounded-xl overflow-hidden shadow-lg">
           <Image
             src={tile.image}
             alt={tile.title}
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
           />
         </div>

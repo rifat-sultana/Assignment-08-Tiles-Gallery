@@ -1,13 +1,12 @@
 "use client";
 
-import { authClient } from "../../lib/auth-client"; // আপনার পাথ ঠিক আছে তো?
+import { authClient } from "../../lib/auth-client"; 
 import { IoLogoGoogle } from "react-icons/io";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 export default function LoginPage() {
-
   const [email, setEmail] = useState("test@gmail.com");
   const [password, setPassword] = useState("123456");
   const [error, setError] = useState("");
@@ -15,26 +14,27 @@ export default function LoginPage() {
 
   const router = useRouter();
 
-  
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
     try {
-      await authClient.signIn.email({
-        email: email,
-        password: password,
-      }, {
-        onSuccess: () => {
-          toast.success("Logged in successfully!");
-          // ৩. মার্ক: লগইন সফল হলে হোম পেইজে যাবে
-          router.push("/"); 
+      await authClient.signIn.email(
+        {
+          email: email,
+          password: password,
         },
-        onError: (ctx) => {
-          setError(ctx.error.message || "Invalid credentials ❌");
-        }
-      });
+        {
+          onSuccess: () => {
+            toast.success("Logged in successfully!");
+            router.push("/");
+          },
+          onError: (ctx) => {
+            setError(ctx.error.message || "Invalid credentials ❌");
+          },
+        },
+      );
     } catch (err) {
       setError("An unexpected error occurred.");
     } finally {
@@ -43,28 +43,24 @@ export default function LoginPage() {
   };
 
   const handleGoogleSignin = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/", 
-    }, {
-      onSuccess: () => {
-        router.push("/");
+    await authClient.signIn.social(
+      {
+        provider: "google",
+        callbackURL: "/",
       },
-      onError: (ctx) => {
-        setError(ctx.error.message);
-      }
-    });
+    );
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-[350px]">
+      <div className="bg-white p-8 rounded-lg shadow-md w-87.5">
         <h2 className="text-2xl font-bold text-center mb-6"> Login </h2>
 
-        <form onClick={handleLogin} className="space-y-4">
-          
+        <form onSubmit={handleLogin} className="space-y-4">
           <div className="relative">
-            <label className="block text-sm font-semibold mb-1 text-gray-700">Email</label>
+            <label className="block text-sm font-semibold mb-1 text-gray-700">
+              Email
+            </label>
             <input
               type="email"
               placeholder="Enter your email"
@@ -72,12 +68,13 @@ export default function LoginPage() {
               defaultValue={"test@gmail.com"}
               onChange={(e) => setEmail(e.target.value)}
               required
-             /> 
-         
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold mb-1 text-gray-700">Password</label>
+            <label className="block text-sm font-semibold mb-1 text-gray-700">
+              Password
+            </label>
             <input
               type="password"
               placeholder="Enter your password"
@@ -95,22 +92,27 @@ export default function LoginPage() {
             disabled={loading}
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 w-full rounded mt-2 transition-all disabled:bg-gray-400"
           >
-            {loading ? <span className="loading loading-spinner"></span> : "Login"}
+            {loading ? (
+              <span className="loading loading-spinner"></span>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
 
         <div className="divider my-6 text-gray-400">OR</div>
 
-        <button 
-          onClick={handleGoogleSignin} 
+        <button
+          onClick={handleGoogleSignin}
+          type="button"
           className="w-full cursor-pointer hover:bg-gray-100 font-bold text-center flex flex-row justify-center border shadow py-2 px-4 rounded items-center gap-3 transition-all"
         >
-          <IoLogoGoogle className="text-lg text-red-500" /> 
+          <IoLogoGoogle className="text-lg text-red-500" />
           <span>Sign in with Google</span>
         </button>
 
         <p className="text-center mt-6 text-sm text-gray-600">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <span
             className="text-blue-600 font-bold cursor-pointer hover:underline"
             onClick={() => router.push("/register")}

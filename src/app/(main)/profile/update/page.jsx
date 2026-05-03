@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "../../../../lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
@@ -22,7 +22,7 @@ export default function UpdateProfile() {
       }, {
         onSuccess: () => {
           toast.success("Profile updated successfully!");
-          router.push("/my-profile"); 
+          router.push("/profile"); 
           router.refresh(); 
         },
         onError: (ctx) => {
