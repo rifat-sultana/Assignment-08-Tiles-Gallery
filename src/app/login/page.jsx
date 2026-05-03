@@ -1,41 +1,53 @@
 "use client";
 
-import { authClient } from "../../lib/auth-client";
+import { authClient } from "../../lib/auth-client"; // আপনার পাথ ঠিক আছে তো?
 import { IoLogoGoogle } from "react-icons/io";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
+  const [email, setEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("123456");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
-  const handleLogin = (e) => {
+  
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
 
-    if (email === "test@gmail.com" && password === "123456") {
-      const userData = { email };
-      localStorage.setItem("user", JSON.stringify(userData));
-      router.push("/");
-    } else {
-      setError("Invalid email or password ❌");
+    try {
+      await authClient.signIn.email({
+        email: email,
+        password: password,
+      }, {
+        onSuccess: () => {
+          toast.success("Logged in successfully!");
+          // ৩. মার্ক: লগইন সফল হলে হোম পেইজে যাবে
+          router.push("/"); 
+        },
+        onError: (ctx) => {
+          setError(ctx.error.message || "Invalid credentials ❌");
+        }
+      });
+    } catch (err) {
+      setError("An unexpected error occurred.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleGoogleSignin = async () => {
-    // await authClient.signIn.social({
-    //   provider: "google",
-    // });
-
     await authClient.signIn.social({
-    provider: "google",
-    callbackURL: "/", // Where to go after success
+      provider: "google",
+      callbackURL: "/", 
     }, {
       onSuccess: () => {
-        // Better Auth manages the session! 
-        // No need for localStorage.setItem
         router.push("/");
       },
       onError: (ctx) => {
@@ -44,91 +56,68 @@ export default function LoginPage() {
     });
   };
 
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-
-      {/* Box */}
-      <div className="bg-white p-8 rounded-lg shadow-md w-350px">
-
+      <div className="bg-white p-8 rounded-lg shadow-md w-[350px]">
         <h2 className="text-2xl font-bold text-center mb-6"> Login </h2>
 
-        <form onClick={handleLogin}>
-
-          {/* Email */}
-
+        <form onClick={handleLogin} className="space-y-4">
+          
           <div className="relative">
-
-            <label className="absolute left-3 top-1 text-xs text-gray-500">
-              Email
-            </label>
-
+            <label className="block text-sm font-semibold mb-1 text-gray-700">Email</label>
             <input
               type="email"
-              placeholder="Enter your email "
-              className="w-full border px-3 pt-5 pb-2 rounded"
-              value={email}
+              placeholder="Enter your email"
+              className="w-full border px-3 py-2 rounded focus:outline-blue-500"
+              defaultValue={"test@gmail.com"}
               onChange={(e) => setEmail(e.target.value)}
-            />
-
+              required
+             /> 
+         
           </div>
 
-          {/* Password */}
           <div>
-            <label className="block text-sm mb-1">Password</label>
+            <label className="block text-sm font-semibold mb-1 text-gray-700">Password</label>
             <input
               type="password"
               placeholder="Enter your password"
-              className="w-full border px-3 py-2 rounded"
-              value={password}
+              className="w-full border px-3 py-2 rounded focus:outline-blue-500"
+              defaultValue={"123456"}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
 
-          {/* Error */}
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {error && <p className="text-red-500 text-xs text-center">{error}</p>}
 
-          {/* Login Button */}
           <button
             type="submit"
-            className="bg-white cursor-pointer hover:bg-gray-300  text-black font-bold py-2 w-full border rounded mt-2"
+            disabled={loading}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 w-full rounded mt-2 transition-all disabled:bg-gray-400"
           >
-            Login
+            {loading ? <span className="loading loading-spinner"></span> : "Login"}
           </button>
         </form>
 
-        <p className="text-center font-semibold text-2xl mt-3" > OR </p>
+        <div className="divider my-6 text-gray-400">OR</div>
 
-        <button onClick={handleGoogleSignin} className="w-full cursor-pointer hover:bg-gray-300 font-bold mt-4 text-center flex flex-row justify-center border shadow py-2 px-4 rounded items-center gap-3">
-          <IoLogoGoogle className="text-lg" /> <span className="text-center ">Sign in with Google</span>
+        <button 
+          onClick={handleGoogleSignin} 
+          className="w-full cursor-pointer hover:bg-gray-100 font-bold text-center flex flex-row justify-center border shadow py-2 px-4 rounded items-center gap-3 transition-all"
+        >
+          <IoLogoGoogle className="text-lg text-red-500" /> 
+          <span>Sign in with Google</span>
         </button>
 
-
-
-        {/* Google Login
-        <button
-          className="w-full font-bold mt-4 border shadow py-2 rounded"
-          onClick={() => {
-            const userData = { email: "google_user@gmail.com" };
-            localStorage.setItem("user", JSON.stringify(userData));
-            router.push("/");
-          }}
-        >
-          Login with Google
-        </button> */}
-
-        {/* Register
-        <p className="text-center mt-4 text-sm">
+        <p className="text-center mt-6 text-sm text-gray-600">
           Don't have an account?{" "}
           <span
-            className="text-blue-500 cursor-pointer"
+            className="text-blue-600 font-bold cursor-pointer hover:underline"
             onClick={() => router.push("/register")}
           >
             Register
           </span>
-        </p> */}
-
+        </p>
       </div>
     </div>
   );

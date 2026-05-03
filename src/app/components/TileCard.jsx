@@ -11,7 +11,7 @@ const TileCard = ({ tile }) => {
   const handleClick = () => {
     setLoading(true);
 
-    // loader দেখানোর জন্য ছোট delay
+ 
     setTimeout(() => {
       router.push(`/all-tiles/${tile.id}`);
     }, 800);

@@ -11,7 +11,7 @@ export const auth = betterAuth({
     client
   }),
   emailAndPassword: { 
-    enabled: false, 
+    enabled: true, 
   }, 
   socialProvider:{
     google:{
