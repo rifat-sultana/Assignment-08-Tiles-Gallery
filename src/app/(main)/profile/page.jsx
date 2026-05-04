@@ -10,14 +10,14 @@ export default function MyProfile() {
   const { data: session, isPending } = authClient.useSession();
   const router = useRouter();
 
-  // ✅ redirect safely after render
+
   useEffect(() => {
     if (!isPending && !session) {
-      router.replace("/login"); // push → replace (better UX)
+      router.replace("/login"); 
     }
   }, [session, isPending, router]);
 
-  // ⏳ loading state
+
   if (isPending) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -26,7 +26,7 @@ export default function MyProfile() {
     );
   }
 
-  // ❌ session না থাকলে কিছু দেখাবে না
+  
   if (!session) return null;
 
   return (

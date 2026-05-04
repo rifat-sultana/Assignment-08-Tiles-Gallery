@@ -11,6 +11,22 @@ export default function UpdateProfile() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  // ✅ FIX: session load হলে state set করো
+  useEffect(() => {
+    if (session?.user) {
+      setName(session.user.name || "");
+      setImage(session.user.image || "");
+    }
+  }, [session]);
+
+  if (isPending) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     setLoading(true);
