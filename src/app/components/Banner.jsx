@@ -12,6 +12,11 @@ export default function Banner() {
           Discover Your Perfect Aesthetic
         </h1>
 
+        <p className=" mb-10 text-md font-bold text-gray-800">
+          Where design meets durability — discover tiles that bring your vision to life. <br />
+          Enhance every corner with textures, patterns, and finishes crafted for modern living. <br />
+        </p>
+
         <Link href="/tiles">
           <button   className="bg-gray-700 hover:bg-red-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-lg font-semibold mt-2">
             Browse Now

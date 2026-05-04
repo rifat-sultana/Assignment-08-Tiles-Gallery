@@ -9,7 +9,7 @@ const MarqueeText = () => {
   ];
 
   return (
-    <div className="bg-white text-black py-2 text-sm mb-5 shadow">
+    <div className="bg-white text-black py-2 text-sm my-5 shadow">
       <Marquee pauseOnHover speed={50}>
         {tiles.map((tile, index) => (
           <span key={index} className="mx-4">
