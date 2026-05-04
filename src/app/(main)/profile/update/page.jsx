@@ -3,6 +3,7 @@ import { useState } from "react";
 import { authClient } from "../../../../lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import React, { useEffect } from 'react'
 
 export default function UpdateProfile() {
   const { data: session } = authClient.useSession();
