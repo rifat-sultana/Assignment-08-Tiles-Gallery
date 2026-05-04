@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -19,14 +19,14 @@ const TileCard = ({ tile }) => {
 
   return (
     <>
-      {/* 🔥 Full Screen Loader */}
+    
       {loading && (
         <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
           <span className="loading loading-spinner loading-xl"></span>
         </div>
       )}
 
-      <div className="bg-gray-200 rounded-2xl text-center text-amber-800 overflow-hidden shadow-2xl hover:shadow-2xl transition duration-300 mt-10">
+      <div className="bg-gray-200 rounded-2xl text-center text-amber-800 overflow-hidden shadow-2xl hover:shadow-2xl transition duration-300 mt-10 animate__animated animate__zoomIn">
         
         {/* Title */}
         <div className="p-4 pt-2">
@@ -48,13 +48,12 @@ const TileCard = ({ tile }) => {
 
         {/* Button */}
         <div className="p-4">
-          <button
-            onClick={handleClick}
-            className="w-full bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-800 transition"
-          >
-            View Details
-          </button>
-        </div>
+    <Link href={`/all-tiles/${tile.id}`}>
+    <button className="w-full bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-800 transition">
+      View Details
+    </button>
+  </Link>
+</div>
 
       </div>
     </>

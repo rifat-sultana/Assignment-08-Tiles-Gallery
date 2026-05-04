@@ -20,7 +20,6 @@ const AllTilesPage = () => {
         fetchTiles();
     }, []);
 
-    // EKAHNE CHANGE KORA HOYECHE
     const filteredTiles = tiles.filter(tile =>
         tile?.title?.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -50,7 +49,7 @@ const AllTilesPage = () => {
                 </div>
             </div>
 
-            {/* Grid Layout */}
+     {/* Grid Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
                 {filteredTiles.length > 0 ? (
                     filteredTiles.map(tile => (
