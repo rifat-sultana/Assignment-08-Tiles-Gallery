@@ -38,7 +38,7 @@ export default function LoginPage() {
     } catch (err) {
       setError("An unexpected error occurred.");
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   };
 
@@ -65,7 +65,7 @@ export default function LoginPage() {
               type="email"
               placeholder="Enter your email"
               className="w-full border px-3 py-2 rounded focus:outline-blue-500"
-              defaultValue={"test@gmail.com"}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -79,7 +79,7 @@ export default function LoginPage() {
               type="password"
               placeholder="Enter your password"
               className="w-full border px-3 py-2 rounded focus:outline-blue-500"
-              defaultValue={"123456"}
+             value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />

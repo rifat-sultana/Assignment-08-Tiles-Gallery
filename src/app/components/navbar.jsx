@@ -34,7 +34,7 @@ export default function Navbar() {
 
         <div className="flex gap-6">
           <Link href="/">Home</Link>
-          <Link href="/tiles">All Tiles</Link>
+          <Link href="/all-tiles">All Tiles</Link>
           <Link href="/profile">My Profile</Link>
         </div>
 
