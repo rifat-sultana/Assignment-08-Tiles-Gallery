@@ -28,15 +28,9 @@ const TileCard = ({ tile }) => {
 
       <div className="bg-gray-200 rounded-2xl text-center text-amber-800 overflow-hidden shadow-2xl hover:shadow-2xl transition duration-300 mt-10 animate__animated animate__zoomIn">
         
-        {/* Title */}
-        <div className="p-4 pt-2">
-          <h3 className="text-lg font-bold my-5">
-            {tile.title}
-          </h3>
-        </div>
 
         {/* Image */}
-        <div className="relative w-full aspect-square">
+        <div className="relative aspect-video w-full overflow-hidden">
           <Image
             src={tile.image}
             alt={tile.title}
@@ -46,14 +40,22 @@ const TileCard = ({ tile }) => {
           />
         </div>
 
+          {/* Title */}
+        <div className="p-3 flex flex-col justify-between grow text-center">
+          <h3 className="text-lg font-bold text-red-900  mb-2 leading-tight">
+            {tile.title}
+          </h3>
+        </div>
+
+
         {/* Button */}
         <div className="p-4">
-    <Link href={`/all-tiles/${tile.id}`}>
-    <button className="w-full bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-800 transition">
-      View Details
-    </button>
-  </Link>
-</div>
+          <Link href={`/all-tiles/${tile.id}`}>
+            <button className="w-full py-2 bg-gray-500 hover:bg-slate-700 text-white font-medium rounded-lg transition-colors duration-200 text-sm">
+              View Details
+              </button>
+              </Link>
+        </div>
 
       </div>
     </>

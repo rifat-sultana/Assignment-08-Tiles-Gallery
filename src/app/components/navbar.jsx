@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { authClient } from "../../lib/auth-client";
+import { FaUserCircle } from "react-icons/fa";
+
 
 export default function Navbar() {
   const { data: session } = authClient.useSession();
@@ -33,26 +35,36 @@ export default function Navbar() {
         </Link>
 
         <div className="flex gap-6">
-          <Link href="/">Home</Link>
-          <Link href="/all-tiles">All Tiles</Link>
-          <Link href="/profile">My Profile</Link>
+          <Link href="/" className="px-4 py-2 transition-all duration-300 rounded-md hover:border hover:border-gray-300 hover:shadow-md"> Home </Link>
+          <Link href="/all-tiles" className="px-4 py-2 transition-all duration-300 rounded-md hover:border hover:border-gray-300 hover:shadow-md"> All Tiles </Link>
+          <Link href="/profile" className=" px-4 py-2 transition-all duration-300 rounded-md hover:border hover:border-gray-300 hover:shadow-md"> My Profile </Link>
         </div>
 
-        <div className="flex gap-4">
+       
+        <div className="flex items-center gap-3">
           {!user ? (
-            <button
-              onClick={handleLogin}
-              className="bg-gray-100 text-black px-4 py-1 font-bold rounded"
-            >
-              Login
-            </button>
+            <>
+              
+              <FaUserCircle className="text-3xl text-gray-600 hover:text-gray-800 cursor-pointer transition-colors" />
+              
+              <button
+                onClick={handleLogin}
+                className="px-6 py-2 font-bold transition-all duration-300 rounded-lg border border-transparent hover:border-gray-300 hover:shadow-md hover:bg-gray-50">
+                Login
+              </button>
+            </>
           ) : (
             <>
-              {/* <Link href="/profile">Profile</Link> */}
+             
+              {user.image ? (
+                <Image src={user.image} alt="User" width={32} height={32} className="rounded-full" />
+              ) : (
+                <FaUserCircle className="text-3xl text-gray-600" />
+              )}
+              
               <button
                 onClick={handleLogout}
-                className="bg-gray-200 text-black px-4 py-1 font-bold rounded"
-              >
+                className="px-6 py-2 font-bold transition-all duration-300 rounded-lg border border-transparent hover:border-gray-300 hover:shadow-md hover:bg-gray-50">
                 Logout
               </button>
             </>
