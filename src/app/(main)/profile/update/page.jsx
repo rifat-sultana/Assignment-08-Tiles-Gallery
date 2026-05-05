@@ -1,32 +1,37 @@
 "use client";
-import { useState, useEffect } from "react"; 
+
+import { useEffect, useState } from "react";
 import { authClient } from "../../../../lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import React from 'react';
 
 export default function UpdateProfile() {
-  const { data: session } = authClient.useSession();
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { data: session, isPending } = authClient.useSession();
   const router = useRouter();
 
   useEffect(() => {
-    if (session?.user) {
-      setName(session.user.name || "");
-      setImage(session.user.image || "");
+    if (!isPending && !session) {
+      router.replace("/login");
     }
-  }, [session]);
+  }, [session, isPending, router]);
 
-  
-  if (!session) {
+  if (isPending) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <span className="loading loading-spinner loading-lg"></span>
       </div>
     );
   }
+
+  if (!session) return null;
+
+  return <UpdateProfileForm session={session} router={router} />;
+}
+
+function UpdateProfileForm({ session, router }) {
+  const [name, setName] = useState(session.user.name ?? "");
+  const [image, setImage] = useState(session.user.image ?? "");
+  const [loading, setLoading] = useState(false);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
