@@ -2,6 +2,22 @@ import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 
+function getAuthBaseURL() {
+  const rawUrl =
+    process.env.BETTER_AUTH_URL ||
+    process.env.NEXT_PUBLIC_BETTER_AUTH_URL ||
+    process.env.PUBLIC_BETTER_AUTH_URL ||
+    process.env.VERCEL_URL;
+
+  if (!rawUrl) return undefined;
+
+  if (rawUrl.startsWith("http://") || rawUrl.startsWith("https://")) {
+    return rawUrl;
+  }
+
+  return `https://${rawUrl}`;
+}
+
 let client;
 let db;
 
@@ -16,6 +32,7 @@ if (!global.mongoClientInstance) {
 db = client.db("tiles_gallery");
 
 export const auth = betterAuth({
+  baseURL: getAuthBaseURL(),
   database: mongodbAdapter(db, { client }),
   emailAndPassword: {
     enabled: true,
