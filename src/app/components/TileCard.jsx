@@ -30,7 +30,7 @@ const TileCard = ({ tile }) => {
 
   return (
     <>
-      {/* Loading Spinner Section - Screenshot_49.jpg ar Screenshot_51.jpg er error solve */}
+     
       {loading && (
         <div className="fixed inset-0 bg-white/60 flex items-center justify-center z-50 backdrop-blur-sm">
           <span className="loading loading-spinner loading-xl  text-red-900"></span>
