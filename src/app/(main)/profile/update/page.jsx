@@ -19,7 +19,7 @@ export default function UpdateProfile() {
     }
   }, [session]);
 
-  // isPending er bodole ekhane session check kora hochche
+  
   if (!session) {
     return (
       <div className="flex justify-center items-center min-h-screen">
