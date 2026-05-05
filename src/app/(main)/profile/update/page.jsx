@@ -1,18 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react"; 
 import { authClient } from "../../../../lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import React, { useEffect } from 'react'
+import React from 'react';
 
 export default function UpdateProfile() {
   const { data: session } = authClient.useSession();
-  const [name, setName] = useState(session?.user?.name || "");
-  const [image, setImage] = useState(session?.user?.image || "");
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // ✅ FIX: session load হলে state set করো
   useEffect(() => {
     if (session?.user) {
       setName(session.user.name || "");
@@ -20,7 +19,8 @@ export default function UpdateProfile() {
     }
   }, [session]);
 
-  if (isPending) {
+  // isPending er bodole ekhane session check kora hochche
+  if (!session) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <span className="loading loading-spinner loading-lg"></span>
